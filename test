@@ -1,0 +1,20 @@
+Sub CopyОбеды(rowNum As Integer)
+    Dim wsSource As Worksheet
+    Dim wsTarget As Worksheet
+    Dim SourceRange As Range
+    Dim TargetCell As Range
+    Dim TargetColumn As Integer
+    
+    Set wsSource = ThisWorkbook.Sheets("ритуальные обеды") '
+    Set wsTarget = ThisWorkbook.Sheets("меню") '
+    TargetColumn = 1 '
+    
+    'Set SourceRange = wsSource.Rows(rowNum) 'диапазон ячеек в указанной строке
+    Set SourceRange = wsSource.Range(wsSource.Cells(rowNum, 1), wsSource.Cells(rowNum, 4))
+    Set TargetCell = wsTarget.Cells(GlobalCounter, 1) 'целевай ячейка
+    
+    ' далее копирование диапазона
+    SourceRange.Copy Destination:=wsTarget.Range(wsTarget.Cells(GlobalCounter, 1), wsTarget.Cells(GlobalCounter, TargetColumn))
+  
+    GlobalCounter = GlobalCounter + 1
+End Sub
